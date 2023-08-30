@@ -1,5 +1,6 @@
 # Dada uma matrix A_nxn, retorna uma matrix Lower e uma matrix Upper que, multiplicadas, resultam em A. Útil para pré-processar dados.
 function decomp_lu(A)
+    ### Para cada iteração, pega a primeira coluna e seta as próximas como combinação linear. Salva as bases e os vetores em matrizes que serão multiplicadas.
     max = size(A)[1]
     L = zeros(size(A))
     U = zeros(size(A))
