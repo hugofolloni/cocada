@@ -40,3 +40,38 @@ function calc_determinante(L, U)
 end
 
 # Para a questão 11 da lista de exercícios, alguns métodos foram implementados
+function generate_matrix(tamanho)
+    x = randn(tamanho, tamanho)
+    y = randn(tamanho, tamanho)
+    Q,r = qr(x)
+    Z,r = qr(y)    
+    L = zeros(tamanho, tamanho)
+    for i in 1:tamanho
+        for j in 1:tamanho
+            if i >= j
+                L[i, j] = rand(Int) % 100
+            end
+        end
+    end    
+    U = zeros(tamanho, tamanho)
+    for i in 1:tamanho
+        for j in 1:tamanho
+            if i <= j
+                U[i, j] = rand(Int) % 100
+            end
+        end
+    end 
+    b = rand(tamanho, 1)
+    return Q, Z, L, U, b
+end
+
+# Para resolução, dados Q e R (ambas matrizes ortogomais), L (Lower) e U (Upper), alem do vetor b, todos gerados randômicamente pelo método anterior, acharmoos Ax = Lb, tal que A = LLQUZ'
+function acha_x(Q, Z, L, U, b)
+    A = L * L * Q * U * Z'
+    
+    y = L\b
+    l = Q'y
+    m = U\l
+    x = Z * m
+    return A, x
+end
