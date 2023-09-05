@@ -20,7 +20,6 @@ function calc_inversa(L, U)
     tamanho = size(L)[1]
     inversa = zeros(tamanho, tamanho)
     identidade = Matrix{Int}(I, tamanho, tamanho)
-    
     for i in 1:tamanho
         y = L\identidade[:,i]
         x = U\y
@@ -28,3 +27,16 @@ function calc_inversa(L, U)
     end
     return inversa
 end
+
+function calc_determinante(L, U)
+    tamanho = size(L)[1]
+    detL = 1
+    detU = 1
+    for i in 1:tamanho
+        detL *= L[i, i]
+        detU *= U[i, i]
+    end
+    return detL * detU
+end
+
+# Para a questão 11 da lista de exercícios, alguns métodos foram implementados
