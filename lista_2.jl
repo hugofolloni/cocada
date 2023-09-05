@@ -7,7 +7,11 @@ function decomp_lu(A)
     L = zeros(size(A))
     U = zeros(size(A))
     for i in 1:max
-        base = A[:,i]/A[i,i]
+        if A[i,i] != 0
+            base = A[:,i]/A[i,i] 
+        else
+            base = zeros(max, 1)
+        end        
         vector = A[i,:]'
         A = A - base * vector
         L[:,i] = base
@@ -15,7 +19,7 @@ function decomp_lu(A)
     end
     return L, U
 end
-
+    
 function calc_inversa(L, U)
     tamanho = size(L)[1]
     inversa = zeros(tamanho, tamanho)
