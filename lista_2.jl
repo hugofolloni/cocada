@@ -20,6 +20,7 @@ function decomp_lu(A)
     return L, U
 end
     
+# Nesse método, por meio da decomposição LU de uma matrix A, podemos achar sua inversa.
 function calc_inversa(L, U)
     tamanho = size(L)[1]
     inversa = zeros(tamanho, tamanho)
@@ -32,6 +33,7 @@ function calc_inversa(L, U)
     return inversa
 end
 
+# Nesse método, por meio da decomposição LU de uma matrix A, podemos achar seu determinante.
 function calc_determinante(L, U)
     tamanho = size(L)[1]
     detL = 1
