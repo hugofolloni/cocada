@@ -81,3 +81,25 @@ function acha_x(Q, Z, L, U, b)
     x = Z * m
     return A, x
 end
+
+function fatoracao_qr_3_x_3(A)
+        q = zeros(size(A)[1], size(A)[2])
+        r = zeros(size(A)[1], size(A)[2])
+        
+        r[1, 1] = norm(A[:,1])
+        q[:,1] = A[:,1] / r[1, 1]
+        r[1, 2] = A[:,2]' * q[:,1]
+        p12 = r[1, 2] * q[:,1]
+        p22 = A[:,2] - p12
+        r[2, 2] = norm(A[:,2])
+        q[:,2] = p22/r[2, 2]
+        r[1, 3] = A[:,3]' * q[:,1]
+        p13 = r[1, 3] * q[:,1]
+        r[2, 3] = A[:,3]' * q[:,2]
+        p23 = r[2, 3] * q[:,2]
+        p33 = A[:,3] - (p13 + p23)
+        r[3, 3] = norm(A[:, 3])
+        q[:,3] = p33/r[3, 3]
+        
+        return q, r
+end
