@@ -16,8 +16,8 @@ function exercise_1()
 
     user_movie_matrix = user_feature_matrix * movie_feature_matrix'
 
-    println("O usuário E gosta ", user_movie_matrix[5, 2], " de Rocky.")
-    println("A matriz que descreve o gosto de cada usuário é: ")
+    println("a) O usuário E gosta ", user_movie_matrix[5, 2], " de Rocky.")
+    print("b) A matriz que descreve o gosto de cada usuário é: \n ")
     for i in 1:5
         for j in 1:5
             number = round(user_movie_matrix[i, j], sigdigits = 2)
@@ -27,9 +27,19 @@ function exercise_1()
                 print(number, " ")
             end
         end
-        print('\n')
+        print("\n ")
     end
 
+end
+
+function possibilidade(A, b)
+    constantes = A\b
+
+    if norm(A * constantes - b) < 0.01
+        return "É possivel com " * string(A\b)
+    else
+        return "Não é possível"
+    end
 end
 
 function exercise_2()
@@ -40,8 +50,8 @@ function exercise_2()
     b_letra_a = [350; 65; 5]
     b_letra_b = [350; 65; 8]
 
-    println(A\b_letra_a)
-    println(A\b_letra_b)
+    println("a) ", possibilidade(A, b_letra_a))
+    println("b) ", possibilidade(A, b_letra_b))
 
 end
 
@@ -73,16 +83,42 @@ end
 function exercise_4()
     votantes = [500.0; 500.0]
 
-    println(passa_tempo_voto(votantes, 15))
+    println("a) Código da função 'passa_tempo_voto(v, i)'")
+    println("b) Em 10 anos: ", passa_tempo_voto(votantes, 10))
+    println("c) A longo prazo, se estabiliza em: ", passa_tempo_voto(votantes, 20))
 
 end
 
-# exercise_1()
+function exercise_5()
+    m = [50; 60; 70; 80]
+    x = [1, 2, 3, 4]
+    
+    println("A constante é dada por: ", x \ m)
+end
 
-# exercise_2()
 
-# println("Resolução do exercício 3: ")
-# exercise_3()
+# function exercise_11()
+#     A = [1 1 0 0; 0 1 0 1; 1 0 1 0; 0 0 1 1]
+#     b = [3, 6, 4, 7]
+    
+#     print(A\b)
+# end
 
+println("Resolução do exercício 1: ")
+exercise_1()
+
+println("\nResolução do exercício 2: ")
+exercise_2()
+
+println("\nResolução do exercício 3: ")
+exercise_3()
+
+println("\nResolução do exercício 4: ")
 exercise_4()
+
+println("\nResolução do exercício 5: ")
+exercise_5()
+
+# println("Resolução do exercício 11: ")
+#exercise_11()
 
